@@ -1,0 +1,8 @@
+streamlit
+pypdf
+groq
+requests
+flask
+flask-cors
+python-dotenv
+gunicorn
