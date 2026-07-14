@@ -1,0 +1,1560 @@
+/* ==========================================================================
+   APPLE DESIGN SYSTEM CORE TOKENS
+   ========================================================================== */
+:root {
+    /* Color System */
+    --bg-color: #07090f;
+    --bg-card: rgba(22, 24, 38, 0.45);
+    --bg-card-hover: rgba(28, 31, 50, 0.6);
+    --bg-input: rgba(10, 11, 18, 0.6);
+    
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(10, 132, 255, 0.35);
+    --border-focus: #0a84ff;
+    
+    --text-primary: #f5f5f7;
+    --text-secondary: #8e8e93;
+    --text-tertiary: #636366;
+    
+    /* Apple Core Accents */
+    --apple-blue: #0071e3;
+    --apple-blue-rgb: 0, 113, 227;
+    --apple-blue-hover: #1484f5;
+    --apple-blue-light: rgba(0, 113, 227, 0.15);
+    
+    --apple-green: #30d158;
+    --apple-green-light: rgba(48, 209, 88, 0.15);
+    
+    --apple-orange: #ff9f0a;
+    
+    --apple-red: #ff453a;
+    --apple-red-light: rgba(255, 69, 58, 0.1);
+    
+    /* Effects & Layout */
+    --glass-blur: blur(25px);
+    --radius-standard: 12px;
+    --radius-large: 18px;
+    --shadow-premium: 0 12px 30px rgba(0, 0, 0, 0.5);
+    --transition-standard: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-snap: all 0.15s ease-out;
+}
+
+/* ==========================================================================
+   BASE & STRUCTURAL RESET
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+/* Hardware-Accelerated Dynamic Grid Backdrop */
+body {
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 113, 227, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(48, 209, 88, 0.03) 0%, transparent 40%),
+        linear-gradient(rgba(255, 255, 255, 0.005) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.005) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 64px 64px, 64px 64px;
+    background-attachment: fixed;
+}
+
+/* Premium Webkit Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================================================
+   GLASS PANELS & CARDS
+   ========================================================================== */
+.glass-panel {
+    background: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-large);
+    box-shadow: var(--shadow-premium);
+    transition: var(--transition-standard);
+}
+
+.glass-panel:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ==========================================================================
+   STICKY HEADER STYLE
+   ========================================================================== */
+.app-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(7, 9, 15, 0.75);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    font-size: 1.5rem;
+    animation: spin-pulse 4s linear infinite;
+}
+
+.logo-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #ffffff 30%, #a2c8f5 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes spin-pulse {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.05); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+/* User Profile Widget */
+.user-profile-widget {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-avatar {
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.profile-role {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   BUTTON SYSTEM (APPLE DESIGN LANGUAGE)
+   ========================================================================== */
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: var(--transition-snap);
+}
+
+.apple-btn-primary {
+    background: linear-gradient(180deg, var(--apple-blue-hover) 0%, var(--apple-blue) 100%);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: var(--radius-standard);
+    padding: 12px 28px;
+    box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);
+}
+
+.apple-btn-primary:hover {
+    background: linear-gradient(180deg, #2490ff 0%, var(--apple-blue-hover) 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0, 113, 227, 0.45);
+}
+
+.apple-btn-primary:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.apple-btn-outline {
+    background: transparent;
+    color: var(--apple-blue);
+    border: 1px solid rgba(0, 113, 227, 0.35);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: var(--radius-standard);
+    padding: 12px 28px;
+}
+
+.apple-btn-outline:hover {
+    background: var(--apple-blue-light);
+    border-color: var(--apple-blue);
+    color: var(--text-primary);
+}
+
+.apple-btn-outline:active {
+    transform: scale(0.98);
+}
+
+.btn-full-width {
+    width: 100%;
+}
+
+.btn-large {
+    padding: 16px 40px;
+    font-size: 1rem;
+}
+
+.btn-small {
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    border-radius: 6px;
+}
+
+.btn-center {
+    display: flex;
+    margin: 24px auto 0 auto;
+}
+
+/* ==========================================================================
+   FORMS & INPUT FIELDS
+   ========================================================================== */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.apple-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding-left: 2px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+.apple-select {
+    width: 100%;
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    outline: none;
+    transition: var(--transition-snap);
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder {
+    color: var(--text-tertiary);
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover,
+.apple-select:hover {
+    border-color: var(--border-hover);
+    background: rgba(14, 15, 26, 0.8);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+.apple-select:focus {
+    border-color: var(--border-focus);
+    background: #0d0f1a;
+    box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.15);
+}
+
+/* Password wrapper with eye button toggle */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    padding-right: 44px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.password-toggle:hover {
+    color: var(--text-primary);
+}
+
+.apple-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%238e8e93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+/* ==========================================================================
+   AUTHENTICATION SCREEN REDESIGN
+   ========================================================================== */
+.auth-section {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 440px;
+    padding: 40px;
+    text-align: center;
+}
+
+.auth-header h1 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: -1.5px;
+}
+
+.gradient-title {
+    background: linear-gradient(135deg, var(--apple-blue-hover), #9bc5f7, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    line-height: 1.4;
+}
+
+/* Pure CSS Segmented Control */
+.segmented-control {
+    display: flex;
+    position: relative;
+    background: rgba(120, 120, 128, 0.14);
+    border-radius: 9px;
+    padding: 2px;
+    margin-bottom: 30px;
+    z-index: 1;
+}
+
+.segmented-control input[type="radio"] {
+    display: none;
+}
+
+.segment-label {
+    flex: 1;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    z-index: 2;
+    transition: color 0.25s;
+    user-select: none;
+}
+
+.segment-slider {
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    width: calc(33.333% - 2.66px);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(10px);
+    border-radius: 7px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    z-index: 0;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+#mode-login:checked ~ .segment-slider {
+    transform: translateX(0);
+}
+
+#mode-signup:checked ~ .segment-slider {
+    transform: translateX(100%);
+}
+
+#mode-admin:checked ~ .segment-slider {
+    transform: translateX(200%);
+}
+
+#mode-login:checked + label,
+#mode-signup:checked + label,
+#mode-admin:checked + label {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   WORKSPACE CONTAINER & TABS
+   ========================================================================== */
+.main-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.workspace-tabs-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 35px;
+}
+
+.workspace-tabs {
+    background: rgba(120, 120, 128, 0.12);
+    border: 1px solid var(--border-color);
+    padding: 4px;
+    border-radius: 20px;
+    display: flex;
+    gap: 4px;
+}
+
+.tab-btn {
+    background: transparent;
+    border-radius: 16px;
+    padding: 8px 24px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: var(--transition-standard);
+}
+
+.tab-btn:hover {
+    color: var(--text-primary);
+}
+
+.tab-btn.active {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
+   TAB CONTENT ANIMATIONS
+   ========================================================================== */
+.tab-content {
+    display: none;
+    animation: tab-switch-fade 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes tab-switch-fade {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Card titles */
+.section-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.45rem;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.section-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    line-height: 1.4;
+}
+
+/* ==========================================================================
+   CONFIG & UPLOADER COMPONENT (TAB 1)
+   ========================================================================== */
+.config-card {
+    padding: 35px;
+}
+
+.config-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+    .config-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Apple-style Drag and Drop Zone */
+.drag-drop-zone {
+    border: 2px dashed rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-standard);
+    background: rgba(10, 11, 18, 0.4);
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    cursor: pointer;
+    position: relative;
+    transition: var(--transition-standard);
+}
+
+.drag-drop-zone.dragover {
+    border-color: var(--border-focus);
+    background: rgba(0, 113, 227, 0.04);
+    box-shadow: 0 0 15px rgba(0, 113, 227, 0.15);
+}
+
+.file-hidden {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.uploader-contents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+}
+
+.uploader-icon-bg {
+    width: 58px;
+    height: 58px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    transition: var(--transition-standard);
+}
+
+.drag-drop-zone:hover .uploader-icon-bg {
+    color: var(--apple-blue-hover);
+    background: rgba(0, 113, 227, 0.08);
+    border-color: rgba(0, 113, 227, 0.35);
+}
+
+.upload-primary-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.upload-secondary-text {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.upload-secondary-text .highlight {
+    color: var(--apple-blue);
+    font-weight: 500;
+}
+
+.upload-limit-text {
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
+}
+
+/* Uploader Active File UI */
+.uploader-active-file {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    padding: 16px 20px;
+    border-radius: 8px;
+    text-align: left;
+    z-index: 15;
+}
+
+.file-icon {
+    font-size: 1.8rem;
+}
+
+.file-meta {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.file-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file-size {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+.remove-file-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 4px;
+}
+
+.remove-file-btn:hover {
+    color: var(--apple-red);
+}
+
+/* Time Window Fields */
+.time-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.time-inputs-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.time-field-box {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.time-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.apple-time-input {
+    width: 100%;
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 12px;
+    border-radius: 8px;
+    outline: none;
+    font-size: 0.95rem;
+    font-family: inherit;
+}
+
+.apple-time-input:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.15);
+}
+
+/* Info Box Alert */
+.time-info-alert {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 14px;
+    border-radius: 8px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.info-alert-icon {
+    font-size: 0.95rem;
+}
+
+.info-alert-text {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    line-height: 1.35;
+}
+
+/* ==========================================================================
+   CALENDAR CONTAINER COMPONENT (TAB 2)
+   ========================================================================== */
+.calendar-card {
+    padding: 35px;
+}
+
+/* Empty states shared layout */
+.calendar-empty-state,
+.roadmap-empty-state {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-state-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    opacity: 0.65;
+}
+
+.calendar-empty-state h3,
+.roadmap-empty-state h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.calendar-empty-state p,
+.roadmap-empty-state p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    max-width: 320px;
+    margin: 0 auto;
+    line-height: 1.45;
+}
+
+/* iOS Schedule Timeline Cards */
+.calendar-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 25px;
+}
+
+.calendar-event-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--apple-blue);
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: 1.2fr 2fr 1.5fr;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transition: var(--transition-standard);
+}
+
+.calendar-event-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    transform: translateX(4px);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 640px) {
+    .calendar-event-card {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
+
+.event-date-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.event-date {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.event-time {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    font-family: monospace;
+}
+
+.event-topic-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.event-topic {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.event-activity {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    line-height: 1.35;
+}
+
+.event-status-box {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.status-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+.status-badge.completed {
+    background: var(--apple-green-light);
+    color: var(--apple-green);
+    border: 1px solid rgba(48, 209, 88, 0.2);
+}
+
+.status-badge.pending {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+/* ==========================================================================
+   ROADMAP CHECKLIST & PROGRESS (TAB 3)
+   ========================================================================== */
+.roadmap-card {
+    padding: 35px;
+}
+
+.roadmap-content-area {
+    margin-top: 25px;
+}
+
+/* Premium Apple-Style Linear Progress Card */
+.progress-bar-card {
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid var(--border-color);
+    padding: 20px 24px;
+    border-radius: var(--radius-standard);
+    margin-bottom: 25px;
+}
+
+.progress-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.progress-status-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.progress-pct-text {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--apple-blue-hover);
+}
+
+.progress-track-bg {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-track-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--apple-blue) 0%, var(--apple-blue-hover) 100%);
+    box-shadow: 0 0 10px rgba(0, 113, 227, 0.4);
+    border-radius: 4px;
+    transition: width 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Action Control Strip */
+.roadmap-actions-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.apple-divider {
+    border: none;
+    height: 1px;
+    background: var(--border-color);
+    margin-bottom: 25px;
+}
+
+/* Interactive Checkboxes List */
+.roadmap-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* High-Tech Custom Checklist Label */
+.checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--border-color);
+    border-radius: var(--radius-standard);
+    cursor: pointer;
+    user-select: none;
+    transition: var(--transition-standard);
+}
+
+.checklist-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.checklist-item.active-item {
+    border-left-color: var(--apple-blue);
+}
+
+/* Circular IOS Checkbox Styling */
+.checkbox-container {
+    position: relative;
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark-circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 22px;
+    width: 22px;
+    background-color: transparent;
+    border: 2px solid var(--text-secondary);
+    border-radius: 50%;
+    transition: var(--transition-snap);
+}
+
+.checkbox-container input:checked ~ .checkmark-circle {
+    background-color: var(--apple-blue);
+    border-color: var(--apple-blue);
+}
+
+/* Draw a checkmark inside the circle */
+.checkmark-circle:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-container input:checked ~ .checkmark-circle:after {
+    display: block;
+}
+
+/* Checked Item Strikeout and Color fade */
+.checklist-text-area {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.checklist-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.4;
+    transition: var(--transition-snap);
+}
+
+.checklist-meta {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    margin-top: 5px;
+    line-height: 1.35;
+    transition: var(--transition-snap);
+}
+
+.checklist-meta strong {
+    color: var(--text-primary);
+}
+
+.checkbox-container input:checked ~ .checklist-text-area .checklist-title {
+    text-decoration: line-through;
+    color: var(--text-tertiary);
+}
+
+.checkbox-container input:checked ~ .checklist-text-area .checklist-meta {
+    color: var(--text-tertiary);
+}
+
+.checkbox-container input:checked ~ .checklist-text-area .checklist-meta strong {
+    color: var(--text-tertiary);
+}
+
+/* ==========================================================================
+   ADMIN PANEL MODULE (TAB 1 ADDITION)
+   ========================================================================== */
+.admin-panel {
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 40px;
+}
+
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 25px;
+}
+
+@media (max-width: 640px) {
+    .status-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.status-card {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.status-icon {
+    font-size: 1.4rem;
+}
+
+.status-label {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-value {
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.status-value.load { color: var(--apple-blue); }
+.status-value.verified { color: var(--apple-green); }
+.status-value.online { color: var(--apple-green); }
+
+.admin-users-card {
+    padding: 24px;
+    margin-bottom: 25px;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+/* Admin Table styles */
+.table-container {
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.85rem;
+}
+
+.admin-table th, 
+.admin-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-table th {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-secondary);
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+.admin-table tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.admin-inspection-box {
+    border-top: 1px solid var(--border-color);
+    padding-top: 25px;
+}
+
+.inspect-controls {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 640px) {
+    .inspect-controls {
+        flex-direction: column;
+    }
+}
+
+.inspect-results-area {
+    margin-top: 16px;
+    animation: tab-switch-fade 0.3s ease;
+}
+
+.sandbox-banner {
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255, 159, 10, 0.04);
+    border-color: rgba(255, 159, 10, 0.15);
+}
+
+.banner-icon {
+    font-size: 1.4rem;
+    color: var(--apple-orange);
+}
+
+.banner-content strong {
+    font-size: 0.85rem;
+    color: var(--apple-orange);
+    display: block;
+    margin-bottom: 2px;
+}
+
+.banner-content p {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    line-height: 1.35;
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATION COMPONENT
+   ========================================================================== */
+.toast-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 320px;
+    width: 100%;
+    pointer-events: none;
+}
+
+.toast {
+    background: rgba(22, 24, 38, 0.88);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-color);
+    padding: 14px 18px;
+    border-radius: 10px;
+    box-shadow: var(--shadow-premium);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    pointer-events: auto;
+    transform: translateX(100%);
+    opacity: 0;
+    animation: toast-slide-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transition: var(--transition-standard);
+}
+
+.toast.toast-fadeout {
+    animation: toast-slide-out 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toast-slide-in {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes toast-slide-out {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+}
+
+.toast-icon {
+    font-size: 1.15rem;
+}
+
+.toast-message {
+    font-size: 0.85rem;
+    font-weight: 550;
+    line-height: 1.35;
+    flex: 1;
+}
+
+.toast.error {
+    border-left: 4px solid var(--apple-red);
+}
+
+.toast.error .toast-icon {
+    color: var(--apple-red);
+}
+
+.toast.success {
+    border-left: 4px solid var(--apple-green);
+}
+
+.toast.success .toast-icon {
+    color: var(--apple-green);
+}
+
+.toast.info {
+    border-left: 4px solid var(--apple-blue);
+}
+
+.toast.info .toast-icon {
+    color: var(--apple-blue);
+}
+
+/* ==========================================================================
+   SPINNERS & LOADERS
+   ========================================================================== */
+.spinner-small {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-top: 2px solid #ffffff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   CURSOR SPOTLIGHT EFFECT
+   ========================================================================== */
+.cursor-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(0, 113, 227, 0.14) 0%, rgba(48, 209, 88, 0.04) 40%, rgba(162, 200, 245, 0.01) 60%, transparent 80%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1; /* Moves behind the glass cards (which should have relative/absolute positioning and higher z-index) */
+    transform: translate3d(-9999px, -9999px, 0); /* Start offscreen */
+    transition: transform 0.06s cubic-bezier(0.25, 1, 0.5, 1);
+    mix-blend-mode: screen;
+}
+
+.glass-panel, .app-header, .workspace-tabs {
+    position: relative;
+    z-index: 5;
+}
+
+/* ==========================================================================
+   USER CUSTOM PREMIUM ANIMATIONS
+   ========================================================================== */
+.premium-button {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
+}
+
+.premium-button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.card {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  opacity: 1;
+  transform: translateY(0);
+
+  @starting-style {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+}
+
+/* Binding premium button styles to existing interactive primary/secondary buttons */
+.apple-btn-primary, .apple-btn-outline, #generate-roadmap-btn, #inspect-load-btn, #logout-btn {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease !important;
+}
+
+.apple-btn-primary:hover, .apple-btn-outline:hover, #generate-roadmap-btn:hover, #inspect-load-btn:hover, #logout-btn:hover {
+  transform: scale(1.05) !important;
+  opacity: 0.9 !important;
+}
+
+/* Binding premium card style transitions to existing glass panel elements */
+.glass-panel, .auth-card, .config-card, .calendar-event-card, .checklist-item, .progress-bar-card {
+  transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease !important;
+  opacity: 1;
+  transform: translateY(0);
+
+  @starting-style {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+}
+
+/* ==========================================================================
+   DYNAMIC AURORA BACKGROUND FOR LOGIN
+   ========================================================================== */
+.login-bg-aurora {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0; /* Behind everything */
+    opacity: 0;
+    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+}
+
+body.auth-active .login-bg-aurora {
+    opacity: 0.88;
+}
+
+.aurora-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.22;
+    mix-blend-mode: screen;
+    will-change: transform;
+}
+
+.blob-1 {
+    background: #0071e3; /* Apple Blue */
+    width: 480px;
+    height: 480px;
+    top: -100px;
+    left: -120px;
+    animation: float-blob-1 25s ease-in-out infinite;
+}
+
+.blob-2 {
+    background: #ff2d55; /* Neon Hot Pink */
+    width: 550px;
+    height: 550px;
+    bottom: -150px;
+    right: -150px;
+    animation: float-blob-2 30s ease-in-out infinite;
+}
+
+.blob-3 {
+    background: #00c7e2; /* Neon Cyan */
+    width: 420px;
+    height: 420px;
+    top: 20%;
+    right: 20%;
+    animation: float-blob-3 22s ease-in-out infinite;
+}
+
+.blob-4 {
+    background: #ff9f0a; /* Apple Orange */
+    width: 440px;
+    height: 440px;
+    bottom: 15%;
+    left: 20%;
+    animation: float-blob-4 28s ease-in-out infinite;
+}
+
+@keyframes float-blob-1 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    33% { transform: translate3d(100px, 80px, 0) scale(1.12); }
+    66% { transform: translate3d(-60px, 120px, 0) scale(0.93); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes float-blob-2 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(-120px, -100px, 0) scale(1.1); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes float-blob-3 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(80px, -120px, 0) scale(0.85); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes float-blob-4 {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    33% { transform: translate3d(-80px, 90px, 0) scale(1.05); }
+    66% { transform: translate3d(70px, -60px, 0) scale(0.95); }
+    100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+/* ==========================================================================
+   GALAXY BACKGROUND CANVAS
+   ========================================================================== */
+.galaxy-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 2; /* Sits above aurora blobs (z-index 0) but below content cards (z-index 5) */
+    opacity: 0.55;
+    mix-blend-mode: screen;
+}
+
+/* ==========================================================================
+   REACT BITS ANIMATED GRADIENT TEXT
+   ========================================================================== */
+.animated-gradient-text {
+    background: linear-gradient(
+        to right,
+        #3300ff 0%,
+        #ff05f7 33%,
+        #f8f8f8 66%,
+        #3300ff 100%
+    ) !important;
+    background-size: 300% 100% !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+    animation: gradient-shift 15s linear infinite !important;
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 300% 50%;
+    }
+}
+
+
+
+
+
+
