@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Sync | AI Academic Architect</title>
+    <!-- Modern Premium Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Main Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Dynamic Aurora Background for Login Page -->
+    <div id="login-aurora-bg" class="login-bg-aurora">
+        <div class="aurora-blob blob-1"></div>
+        <div class="aurora-blob blob-2"></div>
+        <div class="aurora-blob blob-3"></div>
+        <div class="aurora-blob blob-4"></div>
+    </div>
+
+    <!-- Galaxy Interactive Canvas -->
+    <canvas id="galaxy-canvas" class="galaxy-canvas"></canvas>
+
+    <!-- Toast Notifications Area -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Apple-style Translucent Header -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <span class="logo-icon">🔄</span>
+                <span class="logo-text animated-gradient-text">Study Sync</span>
+            </div>
+            
+            <div class="user-profile-widget" id="user-profile-widget" style="display: none;">
+                <div class="profile-info">
+                    <span class="profile-avatar"></span>
+                    <div class="profile-details">
+                        <span class="profile-name" id="display-username">Loading...</span>
+                        <span class="profile-role" id="display-role">Student Node</span>
+                    </div>
+                </div>
+                <button class="apple-btn-outline btn-small" id="logout-btn">Log Out</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-container">
+        
+        <!-- Authentication Screen (Shown by Default) -->
+        <section id="auth-section" class="auth-section">
+            <div class="auth-card glass-panel">
+                <div class="auth-header">
+                    <h1 class="gradient-title animated-gradient-text">Study Sync</h1>
+                    <p class="subtitle">Your AI-Powered Academic Roadmap Architect</p>
+                </div>
+
+                <!-- Apple Segmented Control for Authentication Modes -->
+                <div class="segmented-control">
+                    <input type="radio" name="auth-mode" id="mode-login" checked>
+                    <label for="mode-login" class="segment-label">Login</label>
+
+                    <input type="radio" name="auth-mode" id="mode-signup">
+                    <label for="mode-signup" class="segment-label">Sign Up</label>
+
+                    <input type="radio" name="auth-mode" id="mode-admin">
+                    <label for="mode-admin" class="segment-label">Admin</label>
+                    
+                    <div class="segment-slider"></div>
+                </div>
+
+                <!-- Forms Area -->
+                <form id="auth-form" class="auth-form">
+                    <div class="input-group" id="username-group">
+                        <label for="auth-username" class="apple-label">Username</label>
+                        <input type="text" id="auth-username" placeholder="e.g., alex_codes" autocomplete="username">
+                    </div>
+
+                    <div class="input-group" id="email-group">
+                        <label for="auth-email" class="apple-label">Email Address</label>
+                        <input type="email" id="auth-email" placeholder="name@example.com" autocomplete="email">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="auth-password" class="apple-label">Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="auth-password" placeholder="Min. 6 characters" autocomplete="current-password">
+                            <button type="button" id="toggle-password-btn" class="password-toggle">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="apple-btn-primary btn-full-width" id="auth-submit-btn">
+                        <span>Submit</span>
+                        <div class="spinner-small" id="auth-spinner" style="display: none;"></div>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Main Workspace (Hidden by Default) -->
+        <section id="workspace-section" class="workspace-section" style="display: none;">
+            
+            <!-- Apple-style Navigation Tabs -->
+            <div class="workspace-tabs-container">
+                <div class="workspace-tabs">
+                    <button class="tab-btn active" data-tab="tab-dashboard">
+                        <span class="tab-icon">📊</span>
+                        <span class="tab-text">Dashboard</span>
+                    </button>
+                    <button class="tab-btn" data-tab="tab-calendar">
+                        <span class="tab-icon">📅</span>
+                        <span class="tab-text">Calendar</span>
+                    </button>
+                    <button class="tab-btn" data-tab="tab-roadmap">
+                        <span class="tab-icon">🗺️</span>
+                        <span class="tab-text">Roadmap</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Content Blocks -->
+            <div class="tab-content-container">
+                
+                <!-- TAB 1: DASHBOARD -->
+                <div class="tab-content active" id="tab-dashboard">
+                    
+                    <!-- Admin Panel (Shown only to Admin Users) -->
+                    <div id="admin-panel" class="admin-panel" style="display: none;">
+                        <h2 class="section-title">🛠️ Administrative Master Controls</h2>
+                        
+                        <div class="status-grid">
+                            <div class="status-card glass-panel">
+                                <span class="status-icon">📊</span>
+                                <span class="status-label">System Load</span>
+                                <span class="status-value load">Nominal (0.04s)</span>
+                            </div>
+                            <div class="status-card glass-panel">
+                                <span class="status-icon">🔒</span>
+                                <span class="status-label">Firestore Status</span>
+                                <span class="status-value verified">Verified</span>
+                            </div>
+                            <div class="status-card glass-panel">
+                                <span class="status-icon">📡</span>
+                                <span class="status-label">LLM Server</span>
+                                <span class="status-value online">Groq Online</span>
+                            </div>
+                        </div>
+
+                        <div class="admin-users-card glass-panel">
+                            <h3 class="card-title">📂 Global Registered Users Directory</h3>
+                            <div class="table-container">
+                                <table id="users-table" class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Username</th>
+                                            <th>Associated Email</th>
+                                            <th>Roadmap Milestones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="users-table-body">
+                                        <!-- Dynamic admin user records -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="admin-inspection-box">
+                                <h3 class="card-title">🔍 Inspect Relational Milestones Matrix</h3>
+                                <div class="inspect-controls">
+                                    <select id="inspect-select" class="apple-select">
+                                        <option value="" disabled selected>Select user profile...</option>
+                                    </select>
+                                    <button id="inspect-load-btn" class="apple-btn-primary">Load Target Roadmap</button>
+                                </div>
+                                
+                                <div id="inspect-results-area" class="inspect-results-area" style="display: none;">
+                                    <div class="table-container">
+                                        <table class="admin-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Scheduled Date</th>
+                                                    <th>Time Slot</th>
+                                                    <th>Focus Topic</th>
+                                                    <th>Suggested Activity</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="inspect-table-body">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="sandbox-banner glass-panel">
+                            <span class="banner-icon">🧪</span>
+                            <div class="banner-content">
+                                <strong>User Simulation Sandbox</strong>
+                                <p>Allows testing syllabus generation and rendering flows without altering production records.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Configuration Panel -->
+                    <div class="config-panel-container">
+                        <div class="config-card glass-panel">
+                            <h2 class="section-title">⚡ Generation Configuration</h2>
+                            <p class="section-desc">Provide your course details and upload a digital PDF syllabus to orchestrate your custom study schedule.</p>
+                            
+                            <div class="config-grid">
+                                <!-- File Upload Area -->
+                                <div class="uploader-wrapper">
+                                    <label class="apple-label">Course Syllabus PDF</label>
+                                    <div class="drag-drop-zone" id="drag-drop-zone">
+                                        <input type="file" id="syllabus-input" accept="application/pdf" class="file-hidden">
+                                        <div class="uploader-contents" id="uploader-contents">
+                                            <div class="uploader-icon-bg">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="currentColor">
+                                                    <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
+                                                </svg>
+                                            </div>
+                                            <p class="upload-primary-text">Drag & Drop Syllabus Here</p>
+                                            <p class="upload-secondary-text">or <span class="highlight">browse your files</span></p>
+                                            <p class="upload-limit-text">Supported format: PDF (Text-only, max 20 pages)</p>
+                                        </div>
+                                        <div class="uploader-active-file" id="uploader-active-file" style="display: none;">
+                                            <span class="file-icon">📄</span>
+                                            <div class="file-meta">
+                                                <span class="file-name" id="selected-file-name">syllabus.pdf</span>
+                                                <span class="file-size" id="selected-file-size">1.2 MB</span>
+                                            </div>
+                                            <button type="button" class="remove-file-btn" id="remove-file-btn">×</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Time Window Selectors -->
+                                <div class="time-wrapper">
+                                    <label class="apple-label">Daily Study Window</label>
+                                    <div class="time-inputs-container">
+                                        <div class="time-field-box">
+                                            <span class="time-label">Starts at</span>
+                                            <input type="time" id="study-start-time" value="09:00" class="apple-time-input">
+                                        </div>
+                                        <div class="time-field-box">
+                                            <span class="time-label">Ends at</span>
+                                            <input type="time" id="study-end-time" value="17:00" class="apple-time-input">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="time-info-alert">
+                                        <span class="info-alert-icon">ℹ️</span>
+                                        <p class="info-alert-text">Roadmap topics will be spaced dynamically across this time window.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button id="generate-roadmap-btn" class="apple-btn-primary btn-large btn-center">
+                                <span>Generate Complete Roadmap</span>
+                                <div class="spinner-small" id="generate-spinner" style="display: none;"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: CALENDAR -->
+                <div class="tab-content" id="tab-calendar">
+                    <div class="calendar-panel-container">
+                        <div class="calendar-card glass-panel">
+                            <h2 class="section-title">📅 Study Schedule Calendar Matrix</h2>
+                            <p class="section-desc">Your learning milestones chronologically scheduled and organized for maximum retention.</p>
+                            
+                            <div class="calendar-empty-state" id="calendar-empty">
+                                <div class="empty-state-icon">📅</div>
+                                <h3>Calendar Matrix Pending</h3>
+                                <p>Upload a course document syllabus inside the Dashboard tab to populate your schedule views.</p>
+                            </div>
+                            
+                            <div class="calendar-list" id="calendar-list-area" style="display: none;">
+                                <!-- Calendar cards are dynamically rendered here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: ROADMAP -->
+                <div class="tab-content" id="tab-roadmap">
+                    <div class="roadmap-panel-container">
+                        <div class="roadmap-card glass-panel">
+                            <h2 class="section-title">🗺️ Interactive Study Roadmap Milestones</h2>
+                            <p class="section-desc">Track your curriculum tasks, mark milestones as completed, and synchronise updates to the cloud.</p>
+                            
+                            <div class="roadmap-empty-state" id="roadmap-empty">
+                                <div class="empty-state-icon">🗺️</div>
+                                <h3>Roadmap Checklist Empty</h3>
+                                <p>Feed a syllabus document node inside the Dashboard segment panel to load milestones data fields.</p>
+                            </div>
+                            
+                            <div class="roadmap-content-area" id="roadmap-content-area" style="display: none;">
+                                <!-- Progress Card -->
+                                <div class="progress-bar-card">
+                                    <div class="progress-info-row">
+                                        <span class="progress-status-text" id="progress-summary-text">0/0 Milestones Completed</span>
+                                        <span class="progress-pct-text" id="progress-percent-text">0%</span>
+                                    </div>
+                                    <div class="progress-track-bg">
+                                        <div class="progress-track-fill" id="progress-track-fill" style="width: 0%"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="roadmap-actions-row">
+                                    <button id="save-roadmap-btn" class="apple-btn-primary">Save Progress</button>
+                                    <button id="download-csv-btn" class="apple-btn-outline">Download CSV Sheet</button>
+                                </div>
+
+                                <hr class="apple-divider">
+
+                                <!-- Checklist Container -->
+                                <div class="roadmap-checklist" id="roadmap-checklist-container">
+                                    <!-- Checkbox elements dynamically rendered -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Main JavaScript File -->
+    <script src="app.js"></script>
+</body>
+</html>
