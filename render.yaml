@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: study-sync-ai
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: GROQ_API_KEY
+        placeholder: "Paste your GROQ_API_KEY here"
+        sync: false
